@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Best Player Ratings</title>
+</head>
+<body>
+    <h1>Best Players</h1>
+    <table border="1">
+        <tr>
+            <th>Photo</th>
+            <th>Name</th>
+            <th>Real Name</th>
+            <th>Rating</th>
+        </tr>
+        {% for player in players %}
+        <tr>
+            <td><img src="{{ player.photo_url }}" alt="{{ player.name }}" width="100"></td>
+            <td>{{ player.name }}</td>
+            <td>{{ player.real_name }}</td>
+            <td>{{ player.rating }}%</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'voting_page' %}">Start Voting</a>
+</body>
+</html>

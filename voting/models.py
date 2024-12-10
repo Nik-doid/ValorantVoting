@@ -9,3 +9,10 @@ class Player(models.Model):
     def __str__(self):
         return self.name
     
+    @property
+    def rating(self):
+        total_votes = Player.objects.aggregate(models.Sum('votes'))['votes__sum'] or 0
+        if total_votes == 0:
+            return 0
+        return round((self.votes / total_votes) * 100, 2)
+    

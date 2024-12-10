@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vote for the Best Player</title>
+</head>
+<body>
+    <h1>Choose the Better Player</h1>
+    <div style="display: flex; justify-content: space-around;">
+        <div>
+            <img src="{{ current_player.photo_url }}" alt="{{ current_player.name }}" width="200">
+            <h2>{{ current_player.name }}</h2>
+            <form action="{% url 'vote_player' current_player.id challenger.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Vote for {{ current_player.name }}</button>
+            </form>
+        </div>
+        <div>
+            <img src="{{ challenger.photo_url }}" alt="{{ challenger.name }}" width="200">
+            <h2>{{ challenger.name }}</h2>
+            <form action="{% url 'vote_player' challenger.id current_player.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Vote for {{ challenger.name }}</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
